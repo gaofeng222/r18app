@@ -28,6 +28,9 @@ dependencies:
   dayjs:
     specifier: ^1.11.10
     version: registry.npmmirror.com/dayjs@1.11.10
+  mockjs:
+    specifier: ^1.1.0
+    version: registry.npmmirror.com/mockjs@1.1.0
   react:
     specifier: ^18.2.0
     version: registry.npmmirror.com/react@18.2.0
@@ -9703,6 +9706,15 @@ packages:
     hasBin: true
     dependencies:
       minimist: registry.npmmirror.com/minimist@1.2.8
+    dev: false
+
+  registry.npmmirror.com/mockjs@1.1.0:
+    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==, registry: https://packages.aliyun.com/5eb501ef3fd198000181afca/npm/npm-registry/, tarball: https://registry.npmmirror.com/mockjs/-/mockjs-1.1.0.tgz}
+    name: mockjs
+    version: 1.1.0
+    hasBin: true
+    dependencies:
+      commander: registry.npmmirror.com/commander@8.3.0
     dev: false
 
   registry.npmmirror.com/ms@2.0.0:
