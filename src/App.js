@@ -1,5 +1,6 @@
 import "./App.css";
 import MyCount from "@/components/Counter";
+
 function App() {
   return (
     <div className="App">
