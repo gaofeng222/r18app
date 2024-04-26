@@ -1,6 +1,6 @@
 import { NavBar, Toast, DatePicker } from "antd-mobile";
 import { UpOutline, DownOutline } from "antd-mobile-icons";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "./index.scss";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
@@ -12,7 +12,6 @@ const Month = () => {
     return dayjs(new Date()).format("YYYY-MM");
   });
   const [currentMonthBill, setCurrentMonthBill] = useState([]);
-
   const toggleDateModal = () => {
     setVisible(true);
   };
@@ -44,6 +43,11 @@ const Month = () => {
       total: pay + income,
     };
   }, [currentMonthBill]);
+
+  useEffect(() => {
+    setCurrentMonthBill(monthBillLists[currentDate] || []);
+  }, [monthBillLists]);
+
   const getMonthBillLists = () => {
     return (
       <div className="toLineOverview">
