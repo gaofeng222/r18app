@@ -4,17 +4,20 @@ import { getLists } from '@/api'
 
 
 function Count(){
-  const [count,setCount] = useState(0)
+  let [count,setCount] = useState(0)
   useEffect(function(){
     const getInfoLists = async () => {
       const data = await getLists()
       console.log("🚀 ~ getInfoLists ~ data:", data)
     }
     getInfoLists()
-  },[])
+  },[count])
+  function changeCount(){
+    setCount(++count)
+  }
   return <div>
     <p>{count}</p>
-    <Button color="primary">点击</Button>
+    <Button color="primary" onClick={changeCount}>点击</Button>
   </div>
 }
 
