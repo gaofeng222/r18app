@@ -6,13 +6,13 @@ const okSatatus = {
 // Mock的规则 http://mockjs.com/examples.html#Random\.last\(\)
 const getList = (opts) => {
   const data = Mock.mock({
-    "string|1-10": "★",
-    username: Random.cname(),
-    "age|1-50": 20,
     "lists|10": [
       {
-        "name|+1": ["Hello", "Mock.js", "!"],
         "id|+1": 0,
+        "usefor|+1": ["drinks", "fruit", "play game", "tour"],
+        date: "@datetime",
+        "type|1": ["income", "pay"],
+        "money|-10000-10000": 100,
       },
     ],
   });
