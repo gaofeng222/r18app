@@ -48,15 +48,15 @@ const Month = () => {
     return (
       <div className="toLineOverview">
         <div className="item">
-          <span className="money">{monthResult.income || 0}</span>
+          <span className="money">{monthResult.income.toFixed(2)}</span>
           <span className="type">收入</span>
         </div>
         <div className="item">
-          <span className="money">{monthResult.pay || 0}</span>
+          <span className="money">{monthResult.pay.toFixed(2)}</span>
           <span className="type">支出</span>
         </div>
         <div className="item">
-          <span className="money">{monthResult.total || 0}</span>
+          <span className="money">{monthResult.total.toFixed(2)}</span>
           <span className="type">结余</span>
         </div>
       </div>
