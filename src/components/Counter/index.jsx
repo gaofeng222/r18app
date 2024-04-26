@@ -2,14 +2,15 @@ import {useState,useEffect} from 'react'
 import { Button } from 'antd-mobile'
 import { getLists } from '@/api'
 
+
 function Count(){
   const [count,setCount] = useState(0)
-  useEffect( () => {
-    // const getInfoLists = async () => {
-    //   await getLists()
-    // }
-    // getInfoLists()
-    
+  useEffect(function(){
+    const getInfoLists = async () => {
+      const data = await getLists()
+      console.log("🚀 ~ getInfoLists ~ data:", data)
+    }
+    getInfoLists()
   },[])
   return <div>
     <p>{count}</p>
