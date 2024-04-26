@@ -5,6 +5,7 @@ import "./index.scss";
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import _ from "lodash";
+import DailyBill from "./components/DailyBill";
 const now = new Date();
 const Month = () => {
   const [visible, setVisible] = useState(false);
@@ -48,6 +49,17 @@ const Month = () => {
     setCurrentMonthBill(monthBillLists[currentDate] || []);
   }, [monthBillLists]);
 
+  const dayGroup = useMemo(() => {
+    const data = _.groupBy(currentMonthBill, (item) =>
+      dayjs(item.date).format("YYYY-MM-DD")
+    );
+    const keys = Object.keys(data);
+    return {
+      data,
+      keys,
+    };
+  }, [currentMonthBill]);
+
   const getMonthBillLists = () => {
     return (
       <div className="toLineOverview">
@@ -81,6 +93,9 @@ const Month = () => {
               </span>
             </div>
             {getMonthBillLists()}
+            {[].map((item) => (
+              <DailyBill key={item.id} data={item} />
+            ))}
             <DatePicker
               title="记账日期"
               visible={visible}
