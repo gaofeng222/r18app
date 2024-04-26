@@ -1,13 +1,13 @@
 import { TabBar,Badge } from "antd-mobile"
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import {
   AppOutline,
   MessageOutline,
   MessageFill,
-  UnorderedListOutline,
+  AddOutline,
   UserOutline,
 } from 'antd-mobile-icons'
-import { useLocation,useNavigate } from "react-router-dom"
+import { useLocation,useNavigate  } from "react-router-dom"
 const tabs = [
   {
     key: '/month',
@@ -18,7 +18,7 @@ const tabs = [
   {
     key: '/new',
     title: '增加',
-    icon: <UnorderedListOutline />,
+    icon: <AddOutline />,
     badge: '5',
   },
   {
@@ -30,6 +30,12 @@ const tabs = [
 function GcTabbar(){
   let [nowPath,setNowPath] = useState('/month')
   const router = useNavigate()
+  const {pathname} = useLocation()
+  useEffect(() => {
+    console.log("🚀 ~ GcTabbar ~ routes:", pathname)
+    setNowPath(pathname)
+  }, [pathname])
+  
   const setRouteActive = data => {
     router(data)
     setNowPath(data)

@@ -9,7 +9,7 @@ const getList = (opts) => {
     "string|1-10": "★",
     username: Random.cname(),
     "age|1-50": 20,
-    "lists|1-10": [
+    "lists|10": [
       {
         "name|+1": ["Hello", "Mock.js", "!"],
         "id|+1": 0,
