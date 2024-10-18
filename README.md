@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+## React 框架理论知识
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. React 是 mvc 体系，vue 是 mvvm 体系
+   - mvc: model(数据)-view(视图)-controller(控制器)
+     > 1. 我们需要按照专业的语法去构建 app 页面，react 使用的是 jsx 语法
+     > 2. 构建数据层，需要动态处理的的数据都要数据层支持
+     > 3. 控制层: 当我们需要在视图中进行数据更新时，需要控制层去修改相关数据，然后 react 框架会根据数据的变化去更新视图
+     >    `数据驱动视图的渲染` => `单向驱动`
+     >    视图中的表单内容改变，想要修改数据，需要开发者自己去写事件监听函数，然后修改数据
+   - mvvm: model(数据)-view(视图)-viewModel(视图模型监听层)
+     > 1. 数据驱动视图渲染：监听数据的更新，当数据更新时，视图自动渲染
+     > 2. 视图驱动数据的更新: 监听页面中表单元素的内容改变，自动去修改数据
+     >    `双向驱动`
 
-## Available Scripts
+## jsx 语法
 
-In the project directory, you can run:
+- jsx: javascript xml,就是把 html 和 javascript 结合起来写
 
-### `npm start`
+```jsx
+function App() {
+  useEffect(() => {
+    console.log(process.env);
+    // 请求接口
+    fetch("/api/v1/users")
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }, []);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  /**
+   * 直接显示的静态组件
+   */
+  const oBox = <h2>这是一个标题</h2>;
+  /**
+   * 需要传参的组件
+   */
+  const oBox2 = function (title) {
+    return <h2>这是一个标题,{title}</h2>;
+  };
+  return (
+    <div className="App">
+      <h1>Hello World</h1>
+      {oBox}
+      {oBox2("Hello jsx")}
+      <p>当前的环境是:{process.env.NODE_ENV}</p>
+      <p>当前的环境是:{process.env.REACT_APP_API_URL}</p>
+    </div>
+  );
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![alt text](image.png)
 
-### `npm test`
+`{}`支持 js 表达式，包括函数调用，变量引用，三目运算，逻辑运算等
+不包括语句，如 `if`、`for`,`while` 等
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `ReactDOM.createRoot(document.getElementById("root")).render(<App />)`不能把 body,html 作为根节点渲染，需要我们自己创建 div 作为根节点
+- 组件名必须大写，否则会报错
+- 一个组件中只能有一个根节点，如果有多个根节点，需要使用 `fragment` 包裹，或者使用 `div` 包裹，`<></>`也是 `fragment` 的语法糖
 
-### `npm run build`
+## jsx 底层渲染机制
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. 把我们编写的 jsx 代码编译成 virutal dom 对象【virtualDom】

@@ -1,20 +1,32 @@
-import { useEffect } from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+//导入三个组件
+import Home from "./views/Home";
+import About from "./views/About";
+import User from "./views/User";
+import Condition from "./views/Condition";
+import State from "./views/State/demo04";
+import Context from "./views/Context";
+import Ref from "./views/Ref";
+import LocalStorage from "./views/LocalStorage";
+import EffectComp from "./views/EffectComp";
 function App() {
-  useEffect(() => {
-    console.log(process.env);
-    // 请求接口
-    fetch("/api/v1/users")
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }, []);
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <p>当前的环境是:{process.env.NODE_ENV}</p>
-      <p>当前的环境是:{process.env.REACT_APP_API_URL}</p>
-    </div>
+    <BrowserRouter basename="/">
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* 👈 Renders at /app/ */}
+        <Route path="/about" element={<About />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/condition" element={<Condition />} />
+        <Route path="/state" element={<State />} />
+        <Route path="/context" element={<Context />} />
+        <Route path="/localstorage" element={<LocalStorage />} />
+        <Route path="/ref" element={<Ref />} /> {/* 👈 Renders at /app/ */}
+        <Route path="/effect" element={<EffectComp />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
