@@ -9,7 +9,8 @@ function Home() {
         <Link to="/about">About</Link> | <Link to="/user">User</Link> |
         <Link to="/condition">condition</Link> | <Link to="/state">state</Link>|
         <Link to="/context">Context</Link> | <Link to="/ref">Ref</Link> |
-        <Link to="/localstorage">LocalStorage</Link>
+        <Link to="/localstorage">LocalStorage</Link> |
+        <Link to="/effect">Hook Effect</Link>
       </div>
     </div>
   );
