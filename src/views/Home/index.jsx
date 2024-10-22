@@ -10,7 +10,8 @@ function Home() {
         <Link to="/condition">condition</Link> | <Link to="/state">state</Link>|
         <Link to="/context">Context</Link> | <Link to="/ref">Ref</Link> |
         <Link to="/localstorage">LocalStorage</Link> |
-        <Link to="/effect">Hook Effect</Link>
+        <Link to="/effect">Hook Effect</Link> |<Link to="/jsx">Jsx</Link> |{" "}
+        <Link to="/router">Router</Link>
       </div>
     </div>
   );

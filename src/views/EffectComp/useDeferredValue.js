@@ -2,7 +2,8 @@ import { Suspense, useState, useDeferredValue } from "react";
 import { fetchData } from "./data.js";
 function UseDeferredValue() {
   const [query, setQuery] = useState("");
-  const isStale = false;
+  const deferredValue = useDeferredValue(query);
+  const isStale = query !== deferredValue;
   return (
     <div>
       <h1>UseDeferredValue</h1>
@@ -19,7 +20,7 @@ function UseDeferredValue() {
               : "opacity 0s 0s linear",
           }}
         >
-          <SearchResults query={query} />
+          <SearchResults query={deferredValue} />
         </div>
       </Suspense>
     </div>
