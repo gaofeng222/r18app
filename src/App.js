@@ -12,6 +12,7 @@ import Ref from "./views/Ref";
 import LocalStorage from "./views/LocalStorage";
 import EffectComp from "./views/EffectComp";
 import Jsx from "./views/Jsx";
+import ClassComp from "./views/ClassComp";
 function App() {
   return (
     <BrowserRouter basename="/">
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ref" element={<Ref />} /> {/* 👈 Renders at /app/ */}
         <Route path="/effect" element={<EffectComp />} />
         <Route path="/jsx" element={<Jsx />} />
+        <Route path="/class" element={<ClassComp />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>

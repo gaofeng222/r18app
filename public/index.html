@@ -39,5 +39,20 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+      <div id="box">
+          <button id="btn">提交</button>
+      </div>
+      <script>
+        window.onload = function () {
+          const btn = document.getElementById("btn");
+          btn.onclick = handleClick;
+        }
+
+        function handleClick(e) {
+          console.log("🚀 ~ handleClick ~ e:", e)
+          console.log("提交成功");
+          
+        }
+      </script>
   </body>
 </html>
