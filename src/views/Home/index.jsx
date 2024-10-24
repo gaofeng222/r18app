@@ -11,7 +11,8 @@ function Home() {
         <Link to="/context">Context</Link> | <Link to="/ref">Ref</Link> |
         <Link to="/localstorage">LocalStorage</Link> |
         <Link to="/effect">Hook Effect</Link> |<Link to="/jsx">Jsx</Link> |{" "}
-        <Link to="/class">Classcomp</Link> |<Link to="/hoc">Hoc</Link>
+        <Link to="/class">Classcomp</Link> |<Link to="/hoc">Hoc</Link>|
+        <Link to="/redux">Redux</Link> | <Link to="/lazy">Lazy</Link>
       </div>
     </div>
   );

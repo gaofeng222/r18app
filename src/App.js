@@ -14,6 +14,7 @@ import EffectComp from "./views/EffectComp";
 import Jsx from "./views/Jsx";
 import ClassComp from "./views/ClassComp";
 import Hoc from "./views/Hoc";
+import RuduxComp from "./views/Redux";
 function App() {
   return (
     <BrowserRouter basename="/">
@@ -30,6 +31,7 @@ function App() {
         <Route path="/jsx" element={<Jsx />} />
         <Route path="/class" element={<ClassComp />} />
         <Route path="/hoc" element={<Hoc />} />
+        <Route path="/redux" element={<RuduxComp />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
