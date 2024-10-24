@@ -2,12 +2,13 @@ import FullName from "./FullName";
 import TodoList from "./TodoList.js";
 import UseOnLine from "./UseOnLine.js";
 import GoodsList from "./GoodList";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import ReportList from "./ReportList";
 import UseOnlineStatus from "./useOnlineStatus1";
 import UseDeferredValue from "./useDeferredValue";
 function EffectComp() {
   const [msg, setMsg] = useState("Hello");
+  const [count, setCount] = useState(0);
   const data = [
     {
       id: 1,
@@ -37,6 +38,27 @@ function EffectComp() {
   //   console.log("submit", msg);
   // }
 
+  // useEffect(async () => {
+  //   const result = await fetch("https://jsonplaceholder.typicode.com/todos");
+  //   const data = result.json();
+  //   console.log("🚀 ~ useEffect ~ data:", data);
+  //   return () => {};
+  // }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const result = await fetch("https://jsonplaceholder.typicode.com/todos");
+      const data = await result.json();
+      console.log("🚀 ~ useEffect ~ data:", data);
+      return data;
+    };
+    getData();
+    return () => {
+      console.log(count);
+    };
+  }, [count]);
+  const handleSubmit1 = () => {
+    setCount(count + 1);
+  };
   return (
     <div>
       <h1>Effect Component</h1>
@@ -48,6 +70,8 @@ function EffectComp() {
       {/* <ReportList items={data} /> */}
       {/* <UseOnlineStatus /> */}
       <UseDeferredValue />
+      {count}
+      <button onClick={handleSubmit1}>add</button>
     </div>
   );
 }
