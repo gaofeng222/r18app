@@ -1,9 +1,14 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import { combineReducers } from "redux-immutable";
+import { thunk } from "redux-thunk";
 
 import { CounterReducer } from "./CounterReducer";
 
-let store = createStore(CounterReducer);
+const reducers = combineReducers({
+  count: CounterReducer,
+});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-store.subscribe(() => console.log(store.getState()));
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

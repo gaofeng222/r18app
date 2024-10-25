@@ -2,25 +2,18 @@ import DemoA from "./DemoA";
 import DemoB from "./DemoB";
 import store from "../../store/index";
 import { useEffect, useState } from "react";
+import { Divider, Space } from "antd";
+import { useSelector } from "react-redux";
 function Redux() {
-  const [counter, setCount] = useState(store.getState().counter);
-  useEffect(() => {
-    const unsubscribe = store.subscribe(() => {
-      console.log("aaaa");
-      setCount(store.getState().counter);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [counter]);
+  const counter = useSelector((state) => state.getIn(["count", "counter"]));
   return (
     <div>
-      Redux
-      <hr />
-      {counter}
-      <DemoA />
-      <DemoB />
-      <button onClick={() => store.dispatch({ type: "ADD" })}>+</button>
+      Redux parent count:{counter}
+      <Divider />
+      <Space split={<Divider type="vertical" />}>
+        <DemoA />
+        <DemoB />
+      </Space>
     </div>
   );
 }

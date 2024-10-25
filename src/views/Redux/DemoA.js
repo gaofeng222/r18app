@@ -1,9 +1,10 @@
-import store from "../../store/index";
+import { useSelector } from "react-redux";
+
 function DemoA() {
-  const count = store.getState().counter;
+  const count = useSelector((state) => state.getIn(["count", "counter"]));
   return (
     <div>
-      Demo A<p>--- count: {count}</p>
+      <p> Demo A count: {count}</p>
     </div>
   );
 }
