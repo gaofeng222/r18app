@@ -1,45 +1,59 @@
-import { fromJS } from "immutable";
-const initialState = fromJS({
+import { createSlice } from "@reduxjs/toolkit";
+const initialState = {
   counter: 0,
   userInfo: {
     name: "John Doe",
     age: 25,
   },
+};
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    add: (state) => {
+      state.counter += 1;
+      console.log("🚀 ~ state:", state.counter);
+    },
+    dec: (state) => {
+      state.counter -= 1;
+      console.log("🚀 ~ state:", state.counter);
+    },
+    changeName: (state, action) => {
+      console.log("🚀 ~ payload:", action);
+      state.userInfo.name = action.payload;
+    },
+    handleDelayAddByTen1: (state, action) => {
+      console.log("🚀 ~ action:", action);
+      state.counter += action.payload;
+    },
+  },
 });
-function CounterReducer(state = initialState, action) {
-  console.log("🚀 ~ CounterReducer ~ action:", action);
-  switch (action.type) {
-    case "ADD":
-      return state.update("counter", (val) => {
-        return val + 1;
-      });
-    case "ADD_TWO":
-      return state.update("counter", (val) => {
-        return val + 2;
-      });
-    case "DEC":
-      return state.update("counter", (val) => val - 1);
-    case "DEC_TWO":
-      return state.update("counter", (val) => val - 2);
-    case "CHANGE_NAME":
-      return state.setIn(["userInfo", "name"], action.payload);
-    default:
-      return state;
-  }
-}
 
 // async action 2s later
 function handleDelayAdd() {
   return (dispatch) => {
-    setTimeout(() => dispatch({ type: "ADD_TWO" }), 2000);
+    setTimeout(() => dispatch(add()), 2000);
   };
 }
 
 // async action 2s later
 function handleDelayReduce() {
   return (dispatch) => {
-    setTimeout(() => dispatch({ type: "DEC_TWO" }), 2000);
+    setTimeout(() => dispatch(dec()), 2000);
   };
 }
 
-export { CounterReducer, handleDelayAdd, handleDelayReduce };
+function handleDelayAddByTen(count) {
+  return (dispatch) => {
+    setTimeout(() => dispatch(handleDelayAddByTen1(count)), 2000);
+  };
+}
+
+// export actions，提供给组件调用
+export const { add, dec, changeName, handleDelayAddByTen1 } =
+  counterSlice.actions;
+
+export { handleDelayAdd, handleDelayReduce, handleDelayAddByTen };
+
+// export reducer,提供给store使用
+export default counterSlice.reducer;

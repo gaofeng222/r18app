@@ -12,7 +12,7 @@ function Home() {
         <Link to="/localstorage">LocalStorage</Link> |
         <Link to="/effect">Hook Effect</Link> |<Link to="/jsx">Jsx</Link> |{" "}
         <Link to="/class">Classcomp</Link> |<Link to="/hoc">Hoc</Link>|
-        <Link to="/redux">Redux</Link> | <Link to="/lazy">Lazy</Link>
+        <Link to="/redux">Redux</Link> | <Link to="/taskok">TaskOk</Link>
       </div>
     </div>
   );

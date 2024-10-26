@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+
 //导入三个组件
 import Home from "./views/Home";
 import About from "./views/About";
@@ -15,6 +16,7 @@ import Jsx from "./views/Jsx";
 import ClassComp from "./views/ClassComp";
 import Hoc from "./views/Hoc";
 import RuduxComp from "./views/Redux";
+import TaskOk from "./views/TaskOk";
 import store from "./store";
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path="/class" element={<ClassComp />} />
           <Route path="/hoc" element={<Hoc />} />
           <Route path="/redux" element={<RuduxComp />} />
+          <Route path="/taskok" element={<TaskOk />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
