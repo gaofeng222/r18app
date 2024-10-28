@@ -18,6 +18,7 @@ import Hoc from "./views/Hoc";
 import RuduxComp from "./views/Redux";
 import TaskOk from "./views/TaskOk";
 import store from "./store";
+import Saga from "./views/Saga";
 function App() {
   return (
     <Provider store={store}>
@@ -37,6 +38,7 @@ function App() {
           <Route path="/hoc" element={<Hoc />} />
           <Route path="/redux" element={<RuduxComp />} />
           <Route path="/taskok" element={<TaskOk />} />
+          <Route path="/saga" element={<Saga />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>
