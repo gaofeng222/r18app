@@ -19,6 +19,8 @@ import RuduxComp from "./views/Redux";
 import TaskOk from "./views/TaskOk";
 import store from "./store";
 import Saga from "./views/Saga";
+import SagaLogin from "./views/SagaLogin";
+import SagaList from "./views/SagaList";
 function App() {
   return (
     <Provider store={store}>
@@ -39,6 +41,8 @@ function App() {
           <Route path="/redux" element={<RuduxComp />} />
           <Route path="/taskok" element={<TaskOk />} />
           <Route path="/saga" element={<Saga />} />
+          <Route path="/saga-login" element={<SagaLogin />} />
+          <Route path="/saga-list" element={<SagaList />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </BrowserRouter>

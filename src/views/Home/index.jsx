@@ -13,7 +13,8 @@ function Home() {
         <Link to="/effect">Hook Effect</Link> |<Link to="/jsx">Jsx</Link> |{" "}
         <Link to="/class">Classcomp</Link> |<Link to="/hoc">Hoc</Link>|
         <Link to="/redux">Redux</Link> | <Link to="/taskok">TaskOk</Link>|{" "}
-        <Link to="/saga">Redux Saga</Link> |
+        <Link to="/saga">Redux Saga</Link> |{" "}
+        <Link to="/saga-login">SagaLogin</Link> |{" "}
       </div>
     </div>
   );

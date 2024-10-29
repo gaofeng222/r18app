@@ -20,7 +20,7 @@ function* changeName(action) {
 }
 
 function* taskSagas() {
-  console.log("8888");
+  // console.log("8888");
   yield takeEvery(counterActions.CHANGE_NAME + "@@sagas@@", changeName);
 }
 
