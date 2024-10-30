@@ -39,4 +39,17 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+router.get("/list", (req, res) => {
+  return res.status(401).json({ code: 401, msg: "未登录" });
+});
+
+router.post("/write", (req, res) => {
+  // console.log("🚀 ~ router.post ~ req:", req.body);
+  return res.status(200).json({
+    code: 200,
+    msg: "success",
+    data: { id: 1 },
+  });
+});
+
 module.exports = router;
