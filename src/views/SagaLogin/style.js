@@ -13,6 +13,7 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     h2 {
       margin-bottom: 20px;
+      font-size: 0.48rem;
     }
     form {
       width: 60%;

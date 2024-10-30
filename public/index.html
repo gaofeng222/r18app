@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -25,34 +25,29 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      // 1rem = 100px
+      (function () {
+        const computed = () => {
+          const deviceWidth = document.documentElement.clientWidth
+          const designWidth = 750
+          const ratio = deviceWidth*100/ designWidth
+          if(deviceWidth > designWidth) {
+            document.documentElement.style.fontSize = '100px'
+          }else{
+            document.documentElement.style.fontSize = ratio + 'px'
+          }
+
+        }
+        computed()
+        window.addEventListener('resize', computed, false)
+      })();
+
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-      <!-- <div id="box">
-          <button id="btn">提交</button>
-      </div> -->
-      <!-- <script>
-        window.onload = function () {
-          const btn = document.getElementById("btn");
-          btn.onclick = handleClick;
-        }
-
-        function handleClick(e) {
-          console.log("🚀 ~ handleClick ~ e:", e)
-          console.log("提交成功");
-          
-        }
-      </script> -->
   </body>
 </html>
