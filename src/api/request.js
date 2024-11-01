@@ -14,9 +14,9 @@ head.append("Content-Type", "application/json");
  * @param {object} config  {headers: {}} 用户自定义的header，会覆盖默认的header
  * @returns
  */
-function request(config) {
+
+export function http(config) {
   const history = createBrowserHistory();
-  console.log("🚀 ~ request ~ data:", config);
   if (!_.isPlainObject(config)) config = {};
   config = Object.assign(
     {
@@ -51,14 +51,12 @@ function request(config) {
   }
   if (_.isPlainObject(body)) {
     body = qs.stringify(body);
-    console.log("🚀 ~ request ~ data:", body);
     head["Content-Type"] = "application/x-www-form-urlencoded";
   }
 
   let token = localStorage.getItem("token");
   if (token) {
     head["authrization"] = token;
-    console.log("🚀 ~ request ~ head:", head);
   }
 
   method = method.toUpperCase();
@@ -71,37 +69,14 @@ function request(config) {
   };
   if (/^(POST|PUT|PATCH)$/i.test(method) && body) config.body = body;
   return fetch(url, config)
-    .then((response) => {
-      console.log("🚀 ~ .then ~ response:", response);
-      const { status, statusText } = response;
-      if (/^(2|3)\d{2}$/.test(response.status)) {
-        return response.json();
-      }
-      // 未登录的话，跳转到登录页面
-      if (response.status == 401) {
-        Toast.show({
-          content: statusText,
-          position: "top",
-        });
-        history.push("/saga-login");
-        return;
-      }
-      return Promise.reject({
-        code: -100,
-        status,
-        statusText,
-      });
-    })
+    .then((response) => response.json())
     .catch((err) => {
       console.log("🚀 ~ .then ~ err:", err);
       Toast.show({
         content: err.statusText,
       });
+      return Promise.reject(err);
     });
-}
-
-export function http(config) {
-  return request(config);
 }
 
 // 快速注册
@@ -110,7 +85,7 @@ export function http(config) {
     if (!_.isPlainObject(config)) config = {};
     config["url"] = url;
     config["method"] = item;
-    http(config);
+    return http(config);
   };
 });
 
@@ -120,6 +95,6 @@ export function http(config) {
     config["url"] = url;
     config["method"] = item;
     config["body"] = body;
-    http(config);
+    return http(config);
   };
 });

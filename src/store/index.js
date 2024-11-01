@@ -1,21 +1,16 @@
 import { createStore, applyMiddleware } from "redux";
 import { combineReducers } from "redux-immutable";
-import createSagaMiddleware from "redux-saga";
-import defAllSags from "./sagas/index.js";
-import CounterReducer from "./sagas/counterReducer";
-import TaskOkReucer from "./sagas/taskOkReucer.js";
-import sysLoginReducer from "./sagas/sysReucers.js";
+import { thunk } from "redux-thunk";
+import { createLogger } from "redux-logger";
+import reduxPromise from "redux-promise";
+import reducer from "./reducer";
 
-const sagaMiddleware = createSagaMiddleware();
+const middleware = [thunk, reduxPromise];
+const env = process.env.NODE_ENV;
+if (env === "development") {
+  middleware.push(createLogger({ collapsed: true }));
+}
 
-const reducers = combineReducers({
-  count: CounterReducer,
-  task: TaskOkReucer,
-  sys: sysLoginReducer,
-});
-
-const store = createStore(reducers, applyMiddleware(sagaMiddleware));
-
-sagaMiddleware.run(defAllSags);
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 export default store;

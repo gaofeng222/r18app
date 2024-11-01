@@ -1,0 +1,4 @@
+function NewsItem() {
+  return <div className="news-item-box">每条新闻</div>;
+}
+export default NewsItem;

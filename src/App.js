@@ -5,7 +5,6 @@ import RouterView from "./router";
 
 //导入三个组件
 import Home from "./pages/Home";
-import SagaLogin from "./views/SagaLogin";
 import store from "./store";
 function App() {
   return (

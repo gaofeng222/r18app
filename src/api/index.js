@@ -1,3 +1,4 @@
+import { http } from "./request";
 export const getUserInfo = (data) => {
   console.log("🚀 ~ getUserInfo ~ data:", data);
   return new Promise((resolve, reject) => {
@@ -21,4 +22,11 @@ export async function fetchSmart(url, configObj) {
       return err;
     });
   return response.json();
+}
+
+const apiUrl =
+  "https://mock.presstime.cn/mock/672477d2caf0b4e52f13689d/movie-api";
+
+export function getSwiperData(url) {
+  return http.get(apiUrl + url);
 }
