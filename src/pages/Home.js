@@ -12,19 +12,28 @@ import {
   LoadMoreContainer,
   NesListContainer,
 } from "./style";
-import { getSwiperData } from "../api";
+import { getSwiperData, getNewsList } from "../api";
 import NewsItem from "../components/NewsItem";
 function Home() {
   const [today, setToday] = useState(formatTime(null, "{0}{1}{2}"));
   const [hotLists, setHotLists] = useState([]);
+  const [newsList, setNewsList] = useState([]);
   const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
 
   useEffect(() => {
     (async () => {
       const data = await getSwiperData("/hot");
-      console.log("🚀 ~ data222:", data);
       if (!data.code) {
         setHotLists(data.data.list);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getNewsList("/hotlist");
+      if (!data.code) {
+        setNewsList(data.data.list);
       }
     })();
   }, []);
@@ -62,12 +71,14 @@ function Home() {
       </SwiperWrapper>
       <NesListContainer className="list">
         <SkeletonAgain />
-        <NewsItem />
+        {newsList.map((item, index) => {
+          return <NewsItem item={item} key={item.id} />;
+        })}
       </NesListContainer>
       <LoadMoreContainer className="loadMore">
         <Space block justify="center" align="center">
+          数据加载中
           <DotLoading />
-          记载更多
         </Space>
       </LoadMoreContainer>
     </div>

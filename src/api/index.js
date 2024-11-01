@@ -30,3 +30,9 @@ const apiUrl =
 export function getSwiperData(url) {
   return http.get(apiUrl + url);
 }
+
+// 获取新闻列表
+export function getNewsList(url) {
+  return http.get(apiUrl + url);
+}
+// 获取新闻详情
