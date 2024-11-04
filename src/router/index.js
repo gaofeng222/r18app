@@ -14,8 +14,6 @@ import {
 
 function Element(props) {
   const { component: Component, meta } = props;
-  console.log("🚀 ~ Element ~ meta:", meta);
-  console.log("🚀 ~ Element ~ Component:", Component);
   // 修改页面的title
   document.title = meta?.title || "知乎日报-webapp";
   const navigate = useNavigate(),
@@ -47,12 +45,10 @@ export default function RouterView() {
     >
       <Routes>
         {routes.map((route, index) => {
+          console.log("🚀 ~ {routes.map ~ route:", route.path);
+          const { name, path } = route;
           return (
-            <Route
-              key={index}
-              path={route.path}
-              element={<Element {...route} />}
-            />
+            <Route key={name} path={path} element={<Element {...route} />} />
           );
         })}
       </Routes>

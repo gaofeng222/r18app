@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="container"></ul>
+   <script>
+        let ul = document.getElementById('container');
+        const total = 100       // 总数据条数
+        let once = 20               // 每次渲染条数
+        let page = total / once     // 需要渲染的总次数
+        let index = 0               // 每条记录的索引，防止数据丢失或没有渲染到最后一条
+
+        // 两个参数：剩余需要渲染的数据条数，当前渲染的索引
+        function timeSilceAdd(curTotal, curIndex) {  
+            let pageCount = Math.min(once, curTotal)  // 每次渲染开始的条数索引
+
+            setTimeout(() => {
+                for (let i = 0; i < pageCount; i++) {
+                    let li = document.createElement('li');
+                    li.innerText = curIndex + i + ':' + ~~(Math.random() * total); 
+                    ul.appendChild(li);
+                }
+                // console.log('9999')
+                if(curTotal - pageCount <= 0) return console.log('end')
+                timeSilceAdd(curTotal - pageCount, curIndex + pageCount)
+            })
+        }
+        
+        // timeSilceAdd(total, index)
+        
+
+        // 优化版
+        function timeSilceAdd2(curTotal, curIndex) {
+            let pageCount = Math.min(once, curTotal) // 每次渲染开始的条数索引
+            requestAnimationFrame(() => {
+              const fr = document.createDocumentFragment()
+              for (let i = 0; i < pageCount; i++) {
+                let li = document.createElement('li');
+                li.innerText = curIndex + i + ':' + ~~(Math.random() * total); 
+                fr.appendChild(li)
+
+              }
+              ul.appendChild(fr)
+              console.log('9999')
+              if(curTotal - pageCount <= 0) return console.log('end')
+              timeSilceAdd2(curTotal - pageCount, curIndex + pageCount)
+            })
+
+          }
+        timeSilceAdd2(total, index)
+   </script>
+</body>
+</html>

@@ -20,6 +20,7 @@ function Home() {
   const [newsList, setNewsList] = useState([]);
   const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
   const loadRef = useRef(null);
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     (async () => {
       const data = await getSwiperData("/hot");
@@ -31,17 +32,27 @@ function Home() {
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const data = await getNewsList("/hotlist");
       if (!data.code) {
         setNewsList(data.data.list);
       }
+      setLoading(false);
     })();
 
-    const listContainer = new IntersectionObserver((load) => {
+    const listContainer = new IntersectionObserver(async (load) => {
       console.log("🚀 ~ listContainer ~ load:", load);
       const changes = load[0];
       if (changes.isIntersecting) {
-        alert("我加载了");
+        setLoading(true);
+        const data = await getNewsList("/hotlist");
+        newsList.push(...data.data.list);
+        if (!data.code) {
+          setNewsList([...newsList]);
+        }
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
     });
     listContainer.observe(loadRef.current);
@@ -83,16 +94,25 @@ function Home() {
         </Swiper>
       </SwiperWrapper>
       <NesListContainer className="list">
-        <SkeletonAgain />
-        {newsList.map((item, index) => {
-          return <NewsItem item={item} key={item.id} />;
-        })}
+        {newsList.length > 0 ? (
+          newsList.map((item, index) => {
+            return <NewsItem item={item} key={item.id} />;
+          })
+        ) : (
+          <SkeletonAgain />
+        )}
       </NesListContainer>
       <LoadMoreContainer className="loadMore" ref={loadRef}>
-        <Space block justify="center" align="center">
-          数据加载中
-          <DotLoading />
-        </Space>
+        <div
+          style={{
+            display: newsList.length === 0 || isLoading ? "block" : "none",
+          }}
+        >
+          <Space block justify="center" align="center">
+            数据加载中
+            <DotLoading />
+          </Space>
+        </div>
       </LoadMoreContainer>
     </div>
   );

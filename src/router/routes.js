@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import Home from "../pages/Home";
+import VList from "../pages/vList";
 const routes = [
   {
     path: "/",
@@ -49,6 +50,14 @@ const routes = [
       title: "登录/注册-知乎日报",
     },
     component: lazy(() => import("../pages/Login")),
+  },
+  {
+    path: "/vlist",
+    name: "VList",
+    meta: {
+      title: "虚拟列表-知乎日报",
+    },
+    component: VList,
   },
   {
     path: "*",
