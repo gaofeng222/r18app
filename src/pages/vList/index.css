@@ -1,0 +1,33 @@
+.container-box{
+  height: 400px;
+  width: 100%;
+  background-color: aliceblue;
+  border: #000 1px solid;
+}
+
+
+.infinite-list-container {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  -webkit-overflow-scrolling: touch; /* 启用触摸滚动 */
+  
+}
+.infinite-list-phantom{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: -1;    /* 置于背景层 **/
+}
+.infinite-list{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+}
+.infinite-list-item {
+  border-bottom: 1px solid #000;
+  box-sizing: border-box;
+}
