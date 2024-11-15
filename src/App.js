@@ -11,7 +11,7 @@ import RouterView from "./router/index";
 
 function App() {
   return (
-    <HashRouter basename="/app">
+    <HashRouter>
       <RouterView />
     </HashRouter>
   );

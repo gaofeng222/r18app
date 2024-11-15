@@ -7,7 +7,264 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+*{
+  padding: 0;
+  margin: 0
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.chat {
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 20px;
+  width: 300px;
+  height: auto;
+  background: #fff;
+}
+
+.chat.active {
+  display: none;
+}
+
+.chat h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.chat-form p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 15px;
+  line-height: 35px;
+}
+
+.chat-form p label {
+  width: 50px;
+}
+
+.chat-form p input,
+.chat-form p select {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  background: none;
+}
+
+.chat-form p input:focus,
+.chat-form p select:focus {
+  box-shadow: 0 0 5px #ccc;
+}
+
+.room {
+  /* display: none; */
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.room.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 15px;
+  height: 60px;
+  background: #111;
+  color: #fff;
+}
+
+.room-header h3 {
+  font-size: 18px;
+  text-align: left;
+}
+
+.room-header button {
+  width: 50px;
+  height: 50px;
+  background: none;
+  color: #fff;
+  outline: none;
+  border: none;
+  text-align: right;
+}
+
+.room-nav {
+  box-sizing: border-box;
+  padding: 20px 15px;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.room-nav small,
+.room-nav span {
+  font-size: 14px;
+}
+
+.room-nav span {
+  color: rgb(6, 90, 146);
+}
+
+.room-content {
+  flex: 1;
+  padding: 15px 0;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.room-content li {
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: flex-start; */
+  box-sizing: border-box;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.room-content li.right{
+  text-align: right;
+}
+
+.room-content li .room-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-content li img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.room-content li span {
+  font-size: 14px;
+}
+
+.room-des {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 10px;
+  box-sizing: border-box;
+  padding: 3px 5px;
+  font-size: 14px;
+  line-height: 30px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.room-des::before,
+.room-des::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+}
+
+.room-des::before {
+  display: inline-block;
+  left: -10px;
+  border-right: 5px solid #ccc;
+}
+
+.room-des::after {
+  display: none;
+  right: -10px;
+  border-left: 5px solid #fff;
+}
+
+.room-me {
+  flex-direction: row-reverse;
+}
+
+.room-me .room-des {
+  margin-left: 0;
+  margin-right: 10px;
+  background: #fff;
+}
+
+.room-me .room-des::before {
+  display: none;
+}
+
+.room-me .room-des::after {
+  display: inline-block;
+}
+
+.room-content .system {
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: 35px;
+  line-height: 35px;
+}
+
+.system p {
+  box-sizing: border-box;
+  padding: 0 5px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 5px;
+  background: #ccc;
+}
+
+.room-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  bottom:10px;
+  width: 100%;
+}
+
+.room-footer .room-ipt {
+  margin-top: 1px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 80%;
+  height: 48px;
+  background: none;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.room-footer .room-ipt:focus {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.room-footer .room-btn {
+  width: 19%;
+  height: 100%;
+  background: rgb(2, 54, 112);
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 15px;
+  color: #fff;
 }

@@ -37,6 +37,16 @@ export default [
     component: lazy(() => import("../pages/Login.jsx")),
   },
   {
+    path: "/chat",
+    name: "Chat",
+    component: lazy(() => import("../pages/Chat.jsx")),
+  },
+  {
+    path: "/chatroom/:id",
+    name: "Chartroom",
+    component: lazy(() => import("../pages/Chatroom.jsx")),
+  },
+  {
     path: "*",
     name: "not-found",
     component: lazy(() => import("../pages/404.jsx")),
